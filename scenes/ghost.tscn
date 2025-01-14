@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgpwdt2ajo6cn"]
+
+[ext_resource type="Texture2D" uid="uid://bynp3v8nmptvv" path="res://assets/ghost/blue ghost/spr_ghost_blue_0.png" id="1_xh3h6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_30ira"]
+radius = 17.1172
+
+[node name="Ghost" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xh3h6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_30ira")

@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpd1h80jh5swm"]
+
+[ext_resource type="Script" path="res://scripts/panmac.gd" id="1_lxytw"]
+[ext_resource type="Texture2D" uid="uid://vjijx5o6e0yw" path="res://assets/pac man & life counter & death/pac man/pac_man_sheet.png" id="2_t6vla"]
+
+[sub_resource type="Animation" id="Animation_golpj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1704h"]
+resource_name = "pan_mac_animation"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_usv7r"]
+_data = {
+"RESET": SubResource("Animation_golpj"),
+"pan_mac_animation": SubResource("Animation_1704h")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsvn6"]
+size = Vector2(24, 28)
+
+[node name="Panmac" type="CharacterBody2D"]
+script = ExtResource("1_lxytw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_t6vla")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_usv7r")
+}
+autoplay = "pan_mac_animation"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_jsvn6")
