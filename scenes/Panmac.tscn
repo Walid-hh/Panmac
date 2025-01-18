@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpd1h80jh5swm"]
+[gd_scene load_steps=8 format=3 uid="uid://bpd1h80jh5swm"]
 
 [ext_resource type="Script" path="res://scripts/panmac.gd" id="1_lxytw"]
 [ext_resource type="Texture2D" uid="uid://vjijx5o6e0yw" path="res://assets/pac man & life counter & death/pac man/pac_man_sheet.png" id="2_t6vla"]
+[ext_resource type="AudioStream" uid="uid://imis0xmdy3qd" path="res://assets/audio/panmac-eat.mp3" id="3_8e3cs"]
 
 [sub_resource type="Animation" id="Animation_golpj"]
 length = 0.001
@@ -41,10 +42,10 @@ _data = {
 "pan_mac_animation": SubResource("Animation_1704h")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsvn6"]
-size = Vector2(24, 28)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_py14j"]
+size = Vector2(32, 32)
 
-[node name="Panmac" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="Area2D"]
 script = ExtResource("1_lxytw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -53,11 +54,15 @@ texture = ExtResource("2_t6vla")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_usv7r")
 }
 autoplay = "pan_mac_animation"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_jsvn6")
+shape = SubResource("RectangleShape2D_py14j")
+
+[node name="PacEat" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_8e3cs")
