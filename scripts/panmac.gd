@@ -1,3 +1,4 @@
+@icon("res://assets/pac man & life counter & death/pac man/happy_pac_man.png")
 extends Area2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $Sprite2D/AnimationPlayer
@@ -6,6 +7,8 @@ extends Area2D
 @onready var panmac: Area2D = $"../Panmac"
 @onready var panmac_shader : Shader = preload("res://shaders/Panmac.gdshader")
 @export var tween_duration := 0.3
+@onready var rich_text_label: RichTextLabel = $"../PauseInterface/RichTextLabel"
+var score : int = 0
 var timer : Timer 
 var power_up : bool = false
 var power_up_timer : Timer
@@ -17,8 +20,9 @@ func _ready() -> void:
 	power_up_timer = Timer.new()
 	add_child(power_up_timer)
 	power_up_timer.timeout.connect(_power_up_timeout)
-	timer.timeout.connect(_timer_timeout)
+	timer.timeout.connect(_input_timeout)
 func _process(delta: float) -> void:
+	#grid-based movement
 	if input_access == false :
 		return
 	else :
@@ -38,10 +42,12 @@ func _process(delta: float) -> void:
 			_player_movement(Vector2.RIGHT)
 			sprite_2d.rotation = 0
 			sprite_2d.flip_h = false
+	#we wrap the viewport so that the player doesnt leave the viewport
 	var viewport_size = get_viewport_rect().size
 	position.x = wrapf(position.x , 0 , viewport_size.x)
 	position.y = wrapf(position.y , 0 , viewport_size.y)
 	_powered_up(power_up)
+	rich_text_label.text = "Score : " + str(score)
 
 
 func _player_movement(direction : Vector2) -> void :
@@ -71,14 +77,16 @@ func _player_movement(direction : Vector2) -> void :
 func _eat_pill(target_tile : Vector2i) -> void :
 	pills.set_cell(target_tile,pills.get_cell_source_id(Vector2(0,0)),Vector2i(2,0) , 0)
 	pac_eat.play()
+	score += 1000
 
 func _eat_super_pill(target_tile : Vector2i) -> void :
 	pills.set_cell(target_tile,pills.get_cell_source_id(Vector2(0,0)),Vector2i(2,0) , 0)
 	pac_eat.play()
 	power_up = true
 	power_up_timer.start(5)
+	score += 5000
 
-func _timer_timeout() -> void :
+func _input_timeout() -> void :
 	input_access = true
 	
 func _power_up_timeout() -> void :

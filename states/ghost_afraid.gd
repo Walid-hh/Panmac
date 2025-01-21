@@ -22,6 +22,8 @@ func enemy_movement() -> void :
 	var duration = 100 / speed
 	path = pills.get_astar_path(enemy.position , initial_position)
 	if path.size() > 0 :
+		#the front of the array list that is returned by the path method is the enemy position
+		#we delete it from the array since we want the front to be the target poosition of the enemy
 		path.pop_front()
 	if move_ghost:
 		if path.size() > 0 :
@@ -43,7 +45,8 @@ func enter():
 					animation_player.stop()
 					Transitioned.emit(self , "GhostEaten")
 			else:
-				return)
+				return
+				)
 
 func update(delta : float):
 	enemy_movement()

@@ -13,7 +13,7 @@ var path : Array
 var tween : Tween
 
 func _ready() -> void:
-	speed = enemy.ghost_spec.speed
+	speed = 200
 	initial_position = enemy.position
 
 func enemy_movement() -> void :

@@ -28,7 +28,7 @@ func astar_start() :
 						astar.connect_points(idx , neighbor_cell_idx , false)
 func get_astar_cell_id(cell:Vector2)->int:
 	return int(cell.y+cell.x*self.get_used_rect().size.y)
-
+#gets 2 positions and create a path that connects them in an array of positions
 func get_astar_path(enemy_position : Vector2 , player_position : Vector2) -> Array :
 	var enemy_cell = local_to_map(enemy_position)
 	var enemy_idx = get_astar_cell_id(enemy_cell)

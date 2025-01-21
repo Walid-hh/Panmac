@@ -35,7 +35,7 @@ func enter():
 			func (body_that_entered : Area2D) -> void :
 				if body_that_entered.is_in_group("player"):
 					if panmac.power_up == false:
-						get_tree().quit()
+						get_tree().paused = true
 				else:
 					return)
 	
