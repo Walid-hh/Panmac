@@ -45,7 +45,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_py14j"]
 size = Vector2(32, 32)
 
-[node name="CharacterBody2D" type="Area2D"]
+[node name="PanMac" type="Area2D" groups=["player"]]
 script = ExtResource("1_lxytw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,7 +1,7 @@
 class_name pills extends TileMapLayer
 var astar : AStar2D = AStar2D.new()
-@onready var panmac: Area2D = $"../Panmac"
-@onready var ghost: Node2D = $"../Ghost"
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

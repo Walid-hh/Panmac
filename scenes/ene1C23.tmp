@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgpwdt2ajo6cn"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_0vliu"]
+[ext_resource type="Texture2D" uid="uid://ct2qvbe3r8g4s" path="res://assets/ghost/orange ghost/spr_ghost_orange_0.png" id="2_466jp"]
+[ext_resource type="Script" path="res://scripts/ghost.gd" id="2_r2rfq"]
+[ext_resource type="Script" path="res://states/state_machine.gd" id="4_yvuut"]
+[ext_resource type="Script" path="res://states/ghost_normal.gd" id="5_fhg70"]
+[ext_resource type="Script" path="res://states/ghost_afraid.gd" id="6_x0cf3"]
+
+[sub_resource type="Resource" id="Resource_qhdvi"]
+script = ExtResource("2_r2rfq")
+ghost_img = ExtResource("2_466jp")
+speed = 200.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbiwl"]
+radius = 13.0384
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_0vliu")
+ghost_spec = SubResource("Resource_qhdvi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2d" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2d"]
+shape = SubResource("CircleShape2D_tbiwl")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_yvuut")
+initial_state = NodePath("GhostAfraid")
+
+[node name="GhostNormal" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_fhg70")
+enemy = NodePath("../..")
+
+[node name="GhostAfraid" type="Node" parent="StateMachine"]
+script = ExtResource("6_x0cf3")

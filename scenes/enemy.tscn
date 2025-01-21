@@ -1,18 +1,84 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgpwdt2ajo6cn"]
+[gd_scene load_steps=12 format=3 uid="uid://dgpwdt2ajo6cn"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_0vliu"]
-[ext_resource type="Texture2D" uid="uid://bynp3v8nmptvv" path="res://assets/ghost/blue ghost/spr_ghost_blue_0.png" id="1_xh3h6"]
+[ext_resource type="Script" path="res://scripts/ghost.gd" id="2_r2rfq"]
+[ext_resource type="Script" path="res://states/state_machine.gd" id="4_yvuut"]
+[ext_resource type="Script" path="res://states/ghost_normal.gd" id="5_fhg70"]
+[ext_resource type="Script" path="res://states/ghost_afraid.gd" id="6_x0cf3"]
+[ext_resource type="Script" path="res://states/ghost_eaten.gd" id="7_w2rm1"]
+
+[sub_resource type="Resource" id="Resource_qhdvi"]
+script = ExtResource("2_r2rfq")
+speed = 200.0
+
+[sub_resource type="Animation" id="Animation_12ros"]
+resource_name = "afraid_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_p6qh7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tf3xy"]
+_data = {
+"RESET": SubResource("Animation_p6qh7"),
+"afraid_animation": SubResource("Animation_12ros")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tbiwl"]
 radius = 13.0384
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_0vliu")
+ghost_spec = SubResource("Resource_qhdvi")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_xh3h6")
+[node name="GhostOutline" type="Sprite2D" parent="."]
+
+[node name="GhostColor" type="Sprite2D" parent="."]
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GhostColor"]
+libraries = {
+"": SubResource("AnimationLibrary_tf3xy")
+}
 
 [node name="Area2d" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2d"]
 shape = SubResource("CircleShape2D_tbiwl")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_yvuut")
+initial_state = NodePath("GhostNormal")
+
+[node name="GhostNormal" type="Node" parent="StateMachine" groups=["ghost"]]
+script = ExtResource("5_fhg70")
+
+[node name="GhostAfraid" type="Node" parent="StateMachine" groups=["ghost"]]
+script = ExtResource("6_x0cf3")
+
+[node name="GhostEaten" type="Node" parent="StateMachine" groups=["ghost"]]
+script = ExtResource("7_w2rm1")
