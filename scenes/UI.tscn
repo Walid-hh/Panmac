@@ -1,0 +1,152 @@
+[gd_scene load_steps=8 format=3 uid="uid://h7koxklqy7bd"]
+
+[ext_resource type="PackedScene" uid="uid://ddj1sljg4utd4" path="res://scenes/map.tscn" id="1_lp16s"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_v86sa"]
+[ext_resource type="Texture2D" uid="uid://d0jittkevhpnr" path="res://assets/pac man & life counter & death/pac man/happy_pac_man.png" id="2_mpbhe"]
+[ext_resource type="Texture2D" uid="uid://dvtctl5mho81n" path="res://assets/pac man & life counter & death/pac man/sad_pac_man.png" id="3_m703e"]
+[ext_resource type="Script" path="res://scripts/pause_interface.gd" id="4_iyohx"]
+[ext_resource type="Theme" uid="uid://ckw8fy23c88ay" path="res://theme/pan_mac_theme.tres" id="5_r5h58"]
+[ext_resource type="Texture2D" uid="uid://7c1kexh42r5t" path="res://assets/pac man & life counter & death/pac man/angry_pac_man.png" id="6_4dq5g"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -580.0
+offset_bottom = -580.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_lp16s")]
+position = Vector2(3, 2)
+
+[node name="MainMenu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("5_r5h58")
+script = ExtResource("1_v86sa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 197.0
+offset_right = 303.0
+offset_bottom = 264.0
+scale = Vector2(2, 2)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanmacPlay" type="TextureRect" parent="MainMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_mpbhe")
+stretch_mode = 5
+
+[node name="PanmacExit" type="TextureRect" parent="MainMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_m703e")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Play"
+
+[node name="Exit" type="Button" parent="MainMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exit"
+
+[node name="Title" type="RichTextLabel" parent="MainMenu"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 102.0
+offset_right = 353.0
+offset_bottom = 126.0
+bbcode_enabled = true
+text = "[b]PanMac"
+
+[node name="Me" type="RichTextLabel" parent="MainMenu"]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 485.0
+offset_right = 387.0
+offset_bottom = 512.0
+text = "Made by : Walidhh"
+
+[node name="PauseInterface" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("4_iyohx")
+
+[node name="Score" type="RichTextLabel" parent="PauseInterface"]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 101.0
+offset_right = 369.0
+offset_bottom = 129.0
+fit_content = true
+
+[node name="WinText" type="RichTextLabel" parent="PauseInterface"]
+visible = false
+layout_mode = 0
+offset_left = 203.0
+offset_top = 151.0
+offset_right = 411.0
+offset_bottom = 204.0
+theme = ExtResource("5_r5h58")
+bbcode_enabled = true
+text = "[wave] [rainbow] YOU WON!!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseInterface"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 197.0
+offset_right = 303.0
+offset_bottom = 264.0
+scale = Vector2(2, 2)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseInterface/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanmacReplay" type="TextureRect" parent="PauseInterface/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_4dq5g")
+stretch_mode = 5
+
+[node name="PanmacExit" type="TextureRect" parent="PauseInterface/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_m703e")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="HBoxContainer" parent="PauseInterface/VBoxContainer"]
+layout_mode = 2
+
+[node name="Replay" type="Button" parent="PauseInterface/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_r5h58")
+text = "Replay"
+
+[node name="Exit" type="Button" parent="PauseInterface/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_r5h58")
+text = "Exit"

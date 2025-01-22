@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Ghost" load_steps=4 format=3 uid="uid://wvpae0kw2ae8"]
+
+[ext_resource type="Texture2D" uid="uid://ckd70trt1scfe" path="res://assets/ghost/orange ghost/spr_ghost_afraid_orange_0.png" id="1_u2vyf"]
+[ext_resource type="Texture2D" uid="uid://clmojxmx3qus4" path="res://assets/ghost/spr_eaten_ghost.png" id="2_vqucj"]
+[ext_resource type="Script" path="res://scripts/ghost.gd" id="3_ksmy6"]
+
+[resource]
+script = ExtResource("3_ksmy6")
+ghost_outline = ExtResource("2_vqucj")
+ghost_color = ExtResource("1_u2vyf")
+speed = 150.0

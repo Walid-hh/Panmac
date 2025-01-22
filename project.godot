@@ -11,14 +11,16 @@ config_version=5
 [application]
 
 config/name="PanMac"
-run/main_scene="res://scenes/Game.tscn"
+run/main_scene="res://scenes/UI.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/pac man & life counter & death/pac man/happy_pac_man.png"
+run/size/viewport_height=620
+run/size/viewport_width=620
 
 [display]
 
-window/size/viewport_width=610
-window/size/viewport_height=605
+window/size/viewport_width=620
+window/size/viewport_height=620
 
 [input]
 

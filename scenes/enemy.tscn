@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgpwdt2ajo6cn"]
+[gd_scene load_steps=13 format=3 uid="uid://dgpwdt2ajo6cn"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_0vliu"]
 [ext_resource type="Script" path="res://scripts/ghost.gd" id="2_r2rfq"]
 [ext_resource type="Script" path="res://states/state_machine.gd" id="4_yvuut"]
 [ext_resource type="Script" path="res://states/ghost_normal.gd" id="5_fhg70"]
 [ext_resource type="Script" path="res://states/ghost_afraid.gd" id="6_x0cf3"]
+[ext_resource type="AudioStream" uid="uid://il4bmto5qcup" path="res://assets/audio/pan_mac_die.wav" id="7_gehhg"]
 [ext_resource type="Script" path="res://states/ghost_eaten.gd" id="7_w2rm1"]
 
 [sub_resource type="Resource" id="Resource_qhdvi"]
@@ -81,3 +82,6 @@ script = ExtResource("6_x0cf3")
 
 [node name="GhostEaten" type="Node" parent="StateMachine" groups=["ghost"]]
 script = ExtResource("7_w2rm1")
+
+[node name="PanMacKillSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_gehhg")

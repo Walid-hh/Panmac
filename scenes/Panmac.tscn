@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpd1h80jh5swm"]
+[gd_scene load_steps=9 format=3 uid="uid://bpd1h80jh5swm"]
 
 [ext_resource type="Script" path="res://scripts/panmac.gd" id="1_lxytw"]
 [ext_resource type="Texture2D" uid="uid://vjijx5o6e0yw" path="res://assets/pac man & life counter & death/pac man/pac_man_sheet.png" id="2_t6vla"]
-[ext_resource type="AudioStream" uid="uid://imis0xmdy3qd" path="res://assets/audio/panmac-eat.mp3" id="3_8e3cs"]
+[ext_resource type="AudioStream" uid="uid://dpy3c0ym0t28w" path="res://assets/audio/pan_mac_eat.wav" id="3_c3tjo"]
+[ext_resource type="AudioStream" uid="uid://cst6lccxf7kbb" path="res://assets/audio/pan_mac_power_up.wav" id="4_uya4h"]
 
 [sub_resource type="Animation" id="Animation_golpj"]
 length = 0.001
@@ -42,8 +43,8 @@ _data = {
 "pan_mac_animation": SubResource("Animation_1704h")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_py14j"]
-size = Vector2(32, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwvud"]
+size = Vector2(30, 30)
 
 [node name="PanMac" type="Area2D" groups=["player"]]
 script = ExtResource("1_lxytw")
@@ -61,8 +62,13 @@ libraries = {
 autoplay = "pan_mac_animation"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_py14j")
+shape = SubResource("RectangleShape2D_lwvud")
 
-[node name="PacEat" type="AudioStreamPlayer" parent="."]
+[node name="PanmacEatSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("3_8e3cs")
+stream = ExtResource("3_c3tjo")
+
+[node name="PanmacPowerUpSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_uya4h")
+volume_db = -4.0

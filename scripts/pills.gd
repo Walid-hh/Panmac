@@ -22,7 +22,7 @@ func astar_start() :
 		for j in tilemap_size.y:
 			if self.get_cell_tile_data(Vector2(i,j)) != null :
 				var idx = get_astar_cell_id(Vector2(i,j))
-				for v_neighbor_cell in [Vector2(i,j-1),Vector2(i,j+1),Vector2(i-1,j),Vector2(i+1,j)]:
+				for v_neighbor_cell in [Vector2(i,j-1),Vector2(i,j+1),Vector2(i-1,j),Vector2(i+1,j)] :
 					var neighbor_cell_idx = get_astar_cell_id(v_neighbor_cell)
 					if astar.has_point(neighbor_cell_idx):
 						astar.connect_points(idx , neighbor_cell_idx , false)

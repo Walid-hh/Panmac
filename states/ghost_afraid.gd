@@ -6,6 +6,7 @@ class_name GhostAfraid
 @onready var enemy: Node2D = $"../.."
 @onready var ghost_color: Sprite2D = $"../../GhostColor"
 @onready var animation_player: AnimationPlayer = $"../../GhostColor/AnimationPlayer"
+@onready var pause_interface := $"../../../../../PauseInterface"
 var initial_position : Vector2
 var speed : float 
 var timer : Timer 
@@ -33,27 +34,29 @@ func enemy_movement() -> void :
 			move_ghost = false
 
 func enter():
-	print("I am afraid")
 	animation_player.play("afraid_animation")
 	timer = Timer.new()
 	add_child(timer)
 	timer.timeout.connect(_move_ghost)
-	area_2d.area_entered.connect(
-		func (body_that_entered : Area2D) -> void :
-			if body_that_entered.is_in_group("player"):
-				if panmac.power_up == true :
-					animation_player.stop()
-					Transitioned.emit(self , "GhostEaten")
-			else:
-				return
-				)
+	area_2d.area_entered.connect(_die)
+		
 
 func update(delta : float):
 	enemy_movement()
 	if panmac.power_up == false :
 		animation_player.stop()
+		area_2d.area_entered.disconnect(_die)
 		Transitioned.emit(self , "GhostNormal")
 
 
 func _move_ghost() -> void :
 	move_ghost = true
+
+func _die(body_that_entered : Area2D) -> void :
+	if body_that_entered.is_in_group("player"):
+		if panmac.power_up == true :
+			animation_player.stop()
+			area_2d.area_entered.disconnect(_die)
+			Transitioned.emit(self , "GhostEaten")
+	else:
+		return
