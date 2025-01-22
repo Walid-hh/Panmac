@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://cgd85i7ah6oyw" path="res://resources/blue_ghost.tres" id="7_pgsnb"]
 [ext_resource type="Resource" uid="uid://om76immff2w3" path="res://resources/pink_ghost.tres" id="8_te3vp"]
 [ext_resource type="Resource" uid="uid://wvpae0kw2ae8" path="res://resources/orange_ghost.tres" id="9_itv88"]
-[ext_resource type="AudioStream" path="res://assets/audio/pacman_intro.mp3" id="10_ds76e"]
+[ext_resource type="AudioStream" uid="uid://e4skxpuxuwl" path="res://assets/audio/pan_mac_start.wav" id="10_tx5c7"]
 
 [node name="Game" type="Node2D"]
 process_mode = 3
@@ -43,5 +43,5 @@ position = Vector2(303, 273)
 ghost_spec = ExtResource("9_itv88")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_ds76e")
+stream = ExtResource("10_tx5c7")
 volume_db = -8.0
