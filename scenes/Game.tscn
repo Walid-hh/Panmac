@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://cgd85i7ah6oyw" path="res://resources/blue_ghost.tres" id="7_pgsnb"]
 [ext_resource type="Resource" uid="uid://om76immff2w3" path="res://resources/pink_ghost.tres" id="8_te3vp"]
 [ext_resource type="Resource" uid="uid://wvpae0kw2ae8" path="res://resources/orange_ghost.tres" id="9_itv88"]
-[ext_resource type="AudioStream" uid="uid://c6f76v7x8rgum" path="res://assets/audio/pacman_intro.mp3" id="10_ds76e"]
+[ext_resource type="AudioStream" path="res://assets/audio/pacman_intro.mp3" id="10_ds76e"]
 
 [node name="Game" type="Node2D"]
 process_mode = 3
