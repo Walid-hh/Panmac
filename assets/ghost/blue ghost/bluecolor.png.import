@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ku7n73ndh8eg"
-path="res://.godot/imported/spr_ghost_color_pink_0.png-6670bf453dd8aaa22ed84673c7ee90e2.ctex"
+uid="uid://doifcupj66y2r"
+path="res://.godot/imported/bluecolor.png-0e0e62bdd97c027daa86cfbade747e87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ghost/pink ghost/spr_ghost_color_pink_0.png"
-dest_files=["res://.godot/imported/spr_ghost_color_pink_0.png-6670bf453dd8aaa22ed84673c7ee90e2.ctex"]
+source_file="res://assets/ghost/blue ghost/bluecolor.png"
+dest_files=["res://.godot/imported/bluecolor.png-0e0e62bdd97c027daa86cfbade747e87.ctex"]
 
 [params]
 

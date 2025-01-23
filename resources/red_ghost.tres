@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Ghost" load_steps=4 format=3 uid="uid://1g5e0bxub6p2"]
 
-[ext_resource type="Texture2D" uid="uid://3cn4mn8k0e2n" path="res://assets/ghost/red ghost/spr_ghost_afraid_red_0.png" id="1_vdnrh"]
+[ext_resource type="Texture2D" uid="uid://3cn4mn8k0e2n" path="res://assets/ghost/red ghost/red.png" id="1_vdnrh"]
 [ext_resource type="Texture2D" uid="uid://xc1n2je7nonl" path="res://assets/ghost/red ghost/spr_eaten_ghost_red_0.png" id="2_wsji0"]
 [ext_resource type="Script" path="res://scripts/ghost.gd" id="3_x4fkr"]
 

@@ -13,6 +13,7 @@ var timer : Timer
 var power_up : bool = false
 var power_up_timer : Timer
 var input_access : bool = true
+var last_input : Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
 	timer = Timer.new()
@@ -24,27 +25,25 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	#grid-based movement
-	if input_access == false :
-		return
-	else :
-		if Input.is_action_pressed("move_up") :
-			_player_movement(Vector2.UP)
-			sprite_2d.rotation = 1.5 * PI
-			sprite_2d.flip_h = false
-		elif Input.is_action_pressed("move_down") :
-			sprite_2d.rotation =  0.5 * PI
-			sprite_2d.flip_h = false
-			_player_movement(Vector2.DOWN)
-		elif Input.is_action_pressed("move_left") :
-			_player_movement(Vector2.LEFT)
-			sprite_2d.rotation = 0
-			sprite_2d.flip_h = true
-		elif Input.is_action_pressed("move_right") :
-			_player_movement(Vector2.RIGHT)
-			sprite_2d.rotation = 0
-			sprite_2d.flip_h = false
-	#we wrap the viewport so that the player doesnt leave the viewport
+
+	if Input.is_action_just_pressed("move_up") :
+		last_input = Vector2.UP
+		sprite_2d.rotation = 1.5 * PI
+		sprite_2d.flip_h = false
+	elif Input.is_action_just_pressed("move_down") :
+		last_input = Vector2.DOWN
+		sprite_2d.rotation =  0.5 * PI
+		sprite_2d.flip_h = false
+	elif Input.is_action_just_pressed("move_left") :
+		last_input = Vector2.LEFT
+		sprite_2d.rotation = 0
+		sprite_2d.flip_h = true
+	elif Input.is_action_just_pressed("move_right") :
+		last_input = Vector2.RIGHT
+		sprite_2d.rotation = 0
+		sprite_2d.flip_h = false
+	if input_access :
+		_player_movement(last_input)
 	var viewport_size = get_viewport_rect().size
 	position.x = wrapf(position.x , 0 , viewport_size.x)
 	position.y = wrapf(position.y , 0 , viewport_size.y)
@@ -75,7 +74,7 @@ func _player_movement(direction : Vector2) -> void :
 		power_up_timer.start(5)
 		
 		
-	timer.start(tween_duration)
+	timer.start(tween_duration-0.2)
 
 
 func _eat_pill(target_tile : Vector2i) -> void :
